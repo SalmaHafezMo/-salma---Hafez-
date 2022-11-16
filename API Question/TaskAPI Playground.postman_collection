@@ -1,0 +1,513 @@
+{
+	"info": {
+		"_postman_id": "9ebd1894-bda8-4a8d-9a21-0b0a11a831c9",
+		"name": "API Playground",
+		"description": "These requests showcase some of the things you can do with the API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15400488"
+	},
+	"item": [
+		{
+			"name": "Highest Priced Products",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test (\"Status code is 200\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"var DataResponse = pm.response.json();\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3030/products?$sort[price]=-1",
+					"host": [
+						"localhost"
+					],
+					"port": "3030",
+					"path": [
+						"products"
+					],
+					"query": [
+						{
+							"key": "$sort[price]",
+							"value": "-1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Category Names Only",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test (\"Status code is 200\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"var DataResponse = pm.response.json();\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3030/categories?$select[]=name",
+					"host": [
+						"localhost"
+					],
+					"port": "3030",
+					"path": [
+						"categories"
+					],
+					"query": [
+						{
+							"key": "$select[]",
+							"value": "name"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Categories with TV in the name",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test (\"Status code is 200\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"var DataResponse = pm.response.json();\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3030/categories?name[$like]=*TV*",
+					"host": [
+						"localhost"
+					],
+					"port": "3030",
+					"path": [
+						"categories"
+					],
+					"query": [
+						{
+							"key": "name[$like]",
+							"value": "*TV*"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find stores in Minnesota",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test (\"Status code is 200\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"var DataResponse = pm.response.json();\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3030/stores?state=MN",
+					"host": [
+						"localhost"
+					],
+					"port": "3030",
+					"path": [
+						"stores"
+					],
+					"query": [
+						{
+							"key": "state",
+							"value": "MN"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find stores that sell Apple products",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test (\"Status code is 200\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"var DataResponse = pm.response.json();\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3030/stores?service.name=Apple Shop",
+					"host": [
+						"localhost"
+					],
+					"port": "3030",
+					"path": [
+						"stores"
+					],
+					"query": [
+						{
+							"key": "service.name",
+							"value": "Apple Shop"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find Stores Within 10 Miles of Beverly Hills",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test (\"Status code is 200\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"var DataResponse = pm.response.json();\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3030/stores?near=90210&service.name=Windows%20Store",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3030",
+					"path": [
+						"stores"
+					],
+					"query": [
+						{
+							"key": "near",
+							"value": "90210"
+						},
+						{
+							"key": "service.name",
+							"value": "Windows%20Store"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Product",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//Test response 200\r",
+							"pm.test(\"Status code is 201\", function(){\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"//Test response data is json format \r",
+							"var responsedata = pm.response.json();\r",
+							"\r",
+							"//Test data types \r",
+							"pm.test(\"response have valid data type \" , function(){\r",
+							"    pm.expect(responsedata).to.have.ownProperty('name');\r",
+							"    pm.expect(responsedata.name).to.be.a('string');\r",
+							"    var product_name = pm.variables.get('productname');\r",
+							"    pm.expect(responsedata.name).to.be.equal(product_name);\r",
+							"\r",
+							"    pm.expect(responsedata).to.have.ownProperty('type');\r",
+							"    pm.expect(responsedata.type).to.be.a('string');\r",
+							"    var product_type = pm.variables.get('producttype');\r",
+							"    pm.expect(responsedata.type).to.be.equal(product_type);\r",
+							"\r",
+							"    pm.expect(responsedata).to.have.ownProperty('upc');\r",
+							"    pm.expect(responsedata.upc).to.be.a('string');\r",
+							"    var upc_num = pm.variables.get('upcnum');\r",
+							"    pm.expect(responsedata.upc).to.be.equal(upc_num);\r",
+							"\r",
+							"    pm.expect(responsedata).to.have.ownProperty('price');\r",
+							"    pm.expect(responsedata.price).to.be.a('string');\r",
+							"    var product_price = pm.variables.get('productprice');\r",
+							"    pm.expect(responsedata.price).to.be.equal(product_price);\r",
+							"\r",
+							"    pm.expect(responsedata).to.have.ownProperty('description');\r",
+							"    pm.expect(responsedata.description).to.be.a('string');\r",
+							"    var product_description = pm.variables.get('productdescription');\r",
+							"    pm.expect(responsedata.description).to.be.equal(product_description);\r",
+							"\r",
+							"    pm.expect(responsedata).to.have.ownProperty('model');\r",
+							"    pm.expect(responsedata.model).to.be.a('string');\r",
+							"    var product_model = pm.variables.get('productmodel');\r",
+							"    pm.expect(responsedata.model).to.be.equal(product_model);\r",
+							"    \r",
+							"\r",
+							"});\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var bodydata =JSON.parse(request.data)\r",
+							"pm.variables.set(\"product_name\",bodydata.name);\r",
+							"pm.variables.set(\"product_type\",bodydata.type);\r",
+							"pm.variables.set(\"upc_num\",bodydata.upc);\r",
+							"pm.variables.set(\"product_price\",bodydata.price);\r",
+							"pm.variables.set(\"product_description\",bodydata.description);\r",
+							"pm.variables.set(\"product_model\",bodydata.model);\r",
+							"\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"New Product\",\n\t\"type\": \"Hard Good\",\n\t\"upc\": \"12345676\",\n\t\"price\": 99.99,\n\t\"description\": \"This is a placeholder request for creating a new product.\",\n\t\"model\": \"NP12345\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3030/products",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3030",
+					"path": [
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Service",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var bodydata =JSON.parse(request.data)",
+							"pm.variables.set(\"service_name\",bodydata.name);",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//Test response 200\r",
+							"pm.test(\"Status code is 201\", function(){\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"//Test response data is json format \r",
+							"var responsedata = pm.response.json();\r",
+							"\r",
+							"//Test data types \r",
+							"pm.test(\"response have valid data type \" , function(){\r",
+							"    pm.expect(responsedata).to.have.ownProperty('name');\r",
+							"    pm.expect(responsedata.name).to.be.a('string');\r",
+							"    var Service_name = pm.variables.get('servicename');\r",
+							"    pm.expect(responsedata.name).to.be.equal(Service_name);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{      \n\t  \"name\": \"New Service\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3030/services",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3030",
+					"path": [
+						"services"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Category",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var bodydata =JSON.parse(request.data)",
+							"pm.variables.set(\"category_id\",bodydata.id);",
+							"pm.variables.set(\"category_name\",bodydata.name);",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//Test response 200\r",
+							"pm.test(\"Status code is 201\", function(){\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"//Test response data is json format \r",
+							"var responsedata = pm.response.json();\r",
+							"\r",
+							"//Test data types \r",
+							"pm.test(\"response have valid data type \" , function(){\r",
+							"    pm.expect(responsedata).to.have.ownProperty('id');\r",
+							"    pm.expect(responsedata.name).to.be.a('string');\r",
+							"    var category_id = pm.variables.get('categoryid');\r",
+							"    pm.expect(responsedata.id).to.be.equal(category_id);\r",
+							"\r",
+							"    pm.expect(responsedata).to.have.ownProperty('name');\r",
+							"    pm.expect(responsedata.type).to.be.a('string');\r",
+							"    var category_name = pm.variables.get('categoryname');\r",
+							"    pm.expect(responsedata.type).to.be.equal(category_name);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{      \n\t\"id\": \"pcmcat12345\",\n\t\"name\": \"New Category\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3030/categories",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3030",
+					"path": [
+						"categories"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
